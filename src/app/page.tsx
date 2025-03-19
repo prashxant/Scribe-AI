@@ -1,10 +1,18 @@
 import React from "react";
- 
+import { Button } from "@/components/ui/button"
+
+
+
 
 function HomePage (){
   return (
-    <div className="h-20 bg-red-400 text-blue-300">
+    <div className="">
         HomePage 
+
+      <Button>
+        arjagnah
+      </Button>
+
     </div>
   )
 }
