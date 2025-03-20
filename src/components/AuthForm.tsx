@@ -7,6 +7,7 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 
 type props = {
@@ -16,20 +17,58 @@ type props = {
 
 
 function AuthForm({type }:props) {
-const isloginForm = type === "login";
+    const isloginForm = type === "login";
 
 const router = useRouter();
 const[isPending,startTransition] = useTransition()
 
 const handleSubmit = (formData:FormData) =>{
-    console.log("Form Submiited");
-}
+    startTransition(async()=>{
+        const email= formData.get("email") as string;
+        const password = formData.get("password") as string;
+
+        let errorMessage;
+        let title = "";
+        let description = "";
+
+        if (isloginForm){
+            errorMessage = (await loginAction(email,password)).errorMessage;
+            title :"Logged in"
+            description :  "You have been logged in"
+          }else {
+            errorMessage = (await signUpAction(email,password)).errorMessage;
+            title: "Signed up";
+            description : "Check your email for confirmation link";
+          }
+        
+          if (!errorMessage) {
+            toast({
+                title,
+                description,
+                variant: "success",
+            });
+            router.replace("/");
+        } else {
+            toast({
+                title: "Error",
+                description: errorMessage,
+                variant: "destructive",
+            });
+        }
+    });
+};
+
+          
+
+
+
+
 
   return ( 
     <form action={handleSubmit}>
         <CardContent className="grid w-full item-center gap-4">
         <div className="flex flex-col space-y-1.5">
-              <Label htmlFor='"email'>Email</Label>  
+              <Label htmlFor='email'>Email</Label>  
               <Input
               id="email"
               name="email"
@@ -53,7 +92,7 @@ const handleSubmit = (formData:FormData) =>{
             </div>
         </CardContent>
         <CardFooter>
-            <Button>
+            <Button >
                 {isPending ? 
                     <Loader2 className='animate-spin'/>
                 : isloginForm ?(

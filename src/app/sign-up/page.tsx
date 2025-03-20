@@ -13,7 +13,7 @@ function SignUpPage() {
                 </CardTitle>
             </CardHeader>
 
-            <AuthForm type="signUp"/>
+            <AuthForm type="register"/>
 
         </Card>
     </div>
