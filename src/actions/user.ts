@@ -33,8 +33,10 @@ export const  SignUpAction = async(email : string , password : string) =>{
         if (error) throw error;
 
 
-        const userId = data.user.id;
-        if (!userId) throw new Error("User id not found");
+        const userId = data.user?.id;
+        if (!userId) throw new Error("Error Signing up");
+
+        // adding user to data base
         return{errorMessage : null};
     }
     catch(error){

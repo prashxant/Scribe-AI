@@ -1,13 +1,14 @@
 import { shadow } from "@/styles/utils"
-import Image from "next/image"
+// import Image from "next/image"
 import Link  from "next/link"
 import { Button } from "./ui/button";
 import {DarkModeToggle} from "./DarkModeToggle";
 import LogOutButton from "./LogOutButton";
+import { getUser } from "@/auth/server";
 
 
-function Header() {
-    const user = null;
+async function Header() {
+    const user = await getUser();
   return (
     <header className="bg-popover relative flex h-24w w-full item-center justify-between  px-3 sm:px-8"
     style={{
