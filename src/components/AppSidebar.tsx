@@ -6,7 +6,7 @@ import {
     SidebarGroup,
     SidebarHeader,
   } from "@/components/ui/sidebar"
-  
+  // nothing to add
   async function AppSidebar() {
     const user  = getUser()
     return (
