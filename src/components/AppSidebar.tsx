@@ -9,6 +9,7 @@ import {
   // nothing to add
   async function AppSidebar() {
     const user  = getUser()
+     
     return (
       <Sidebar>
         <SidebarHeader />
@@ -20,5 +21,5 @@ import {
       </Sidebar>
     )
   }
-  export default AppSidebar 
+  export default AppSidebar
   
