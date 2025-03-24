@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 
 function HomePage (){
   return (
-    <div className="">
+    <div className="flex h-full flex-col  items-center  gap-4">
         HomePage 
 
       <Button>
